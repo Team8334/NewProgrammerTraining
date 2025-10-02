@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  * How to Complete This Level:
  *   1. Open Shuffleboard 2025 on your laptop.
- *   2. Open FRC Driver Station on your laptop.
+ *   2. Open FRC Driver Station on your laptop and say yes to the pop up question.
  *   2. In VS Code:
  *        ➤ Press Ctrl+Shift+P → Type/Select "WPILib: Build Robot Code"
  *        ➤ Wait for "BUILD SUCCESSFUL"
