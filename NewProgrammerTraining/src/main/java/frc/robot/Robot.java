@@ -17,6 +17,8 @@ public class Robot extends TimedRobot {
         levelChooser.setDefaultOption("Level 1", "Level1");
         levelChooser.addOption("Level 2", "Level2");
         levelChooser.addOption("Level 3", "Level3");
+        levelChooser.addOption("Level 4", "Level4");
+        levelChooser.addOption("Level 5", "Level5");
         // Add more levels here as you create them
 
         SmartDashboard.putData("Level Select", levelChooser);
