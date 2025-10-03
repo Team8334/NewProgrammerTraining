@@ -1,6 +1,8 @@
 // Level3.java
 package frc.robot.Levels;
 import frc.robot.LevelBase;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -41,32 +43,44 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Level3 extends LevelBase {
     private boolean initialized = false;
     
+    // Framework variables for our widgets
+    private SimpleWidget numberAWidget;
+    private SimpleWidget numberBWidget;
+    private SimpleWidget sumWidget;
+
+    // ===============================================================
+    //          ===>  WRITE YOUR CODE IN THE run() METHOD  <===
+    // ===============================================================
+    
     @Override
     public void run() {
-        // Initialize default values if first run
-        if (!initialized) {
-            SmartDashboard.putNumber("Number A", 0.0);
-            SmartDashboard.putNumber("Number B", 0.0);
-            SmartDashboard.putNumber("Sum", 0.0);
-            initialized = true;
-        }
-        
-        // TODO: Read Number A from Shuffleboard
-        // double numberA = SmartDashboard.getNumber("Number A", 0.0);
-        
-        // TODO: Read Number B from Shuffleboard
-        // double numberB = SmartDashboard.getNumber("Number B", 0.0);
+
+        // Use getNumber() to read values. If the entry doesn't exist, it uses the default.
+        //double numberA = levelTab.add("Number A", 0.0).getEntry().getDouble(0.0);
+        //double numberB = levelTab.add("Number B", 0.0).getEntry().getDouble(0.0);
         
         // TODO: Calculate the sum
         // double sum = numberA + numberB;
         
         // TODO: Display the result on Shuffleboard
-        // SmartDashboard.putNumber("Sum", sum);
-        
+        // sumWidget.getEntry().setDouble(sum);
+
         // Print to console for debugging
         // System.out.println("A: " + numberA + " + B: " + numberB + " = " + sum);
     }
     
+
+    // ===============================================================
+    //          ===>  DO NOT EDIT THE CODE BELOW THIS LINE  <===
+    // ===============================================================
+
+    public Level3(ShuffleboardTab tab) {
+        this.levelTab = tab;
+        numberAWidget = levelTab.add("Number A", 0.0);
+        numberBWidget = levelTab.add("Number B", 0.0);
+        sumWidget = levelTab.add("Sum", 0.0);
+    }
+
     @Override
     public Mode getMode() { 
         // This level runs continuously to update as inputs change
@@ -75,24 +89,18 @@ public class Level3 extends LevelBase {
     
     @Override
     public void reset() {
-        initialized = false;
-        SmartDashboard.putNumber("Number A", 0.0);
-        SmartDashboard.putNumber("Number B", 0.0);
-        SmartDashboard.putNumber("Sum", 0.0);
+        // Set the widgets back to their default values
+        numberAWidget.getEntry().setDouble(0.0);
+        numberBWidget.getEntry().setDouble(0.0);
+        sumWidget.getEntry().setDouble(0.0);
     }
     
     @Override
     public boolean checkSuccess() {
-        // Get the current values
-        double a = SmartDashboard.getNumber("Number A", 0.0);
-        double b = SmartDashboard.getNumber("Number B", 0.0);
-        double displayedSum = SmartDashboard.getNumber("Sum", 0.0);
+        double a = numberAWidget.getEntry().getDouble(0.0);
+        double b = numberBWidget.getEntry().getDouble(0.0);
+        double displayedSum = sumWidget.getEntry().getDouble(0.0);
         
-        // Check if the displayed sum matches the actual sum
-        // Allow for tiny floating-point errors with a small epsilon
-        double actualSum = a + b;
-        double epsilon = 0.0001;
-        
-        return Math.abs(displayedSum - actualSum) < epsilon;
+        return Math.abs(displayedSum - (a + b)) < 0.0001;
     }
 }

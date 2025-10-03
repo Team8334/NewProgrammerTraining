@@ -1,6 +1,7 @@
 // Level2.java
 package frc.robot.Levels;
 import frc.robot.LevelBase;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -50,6 +51,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Level2 extends LevelBase {
     private boolean completed = false;
     
+    // ===============================================================
+    // ===============================================================
+    //
+    //          ===>  WRITE YOUR CODE IN THE run() METHOD  <===
+    //
+    // ===============================================================
+    // ===============================================================
+    
     @Override
     public void run() {
         System.out.println("Level 2: Working with data types");
@@ -71,14 +80,28 @@ public class Level2 extends LevelBase {
         
         
         // TODO: Display all variables on SmartDashboard
-        // SmartDashboard.putString("Team Name", teamName);
-        // SmartDashboard.putNumber("Team Number", teamNumber);
-        // SmartDashboard.putNumber("Sensor Reading", sensorValue);
-        // SmartDashboard.putBoolean("Robot Ready", robotReady);
+        // We now use the 'levelTab' variable to keep the UI clean.
+        //levelTab.add("Team Name", teamName);
+        //levelTab.add("Team Number", teamNumber);
+        //levelTab.add("Sensor Reading", sensorValue);
+        //levelTab.add("Robot Enabled", isEnabled);
         
         // Uncomment this line when you've completed the tasks
         // completed = true;
     }
+
+        
+    // ===============================================================
+    // ===============================================================
+    //
+    //          ===>  DO NOT EDIT THE CODE BELOW THIS LINE  <===
+    //          (This is the framework that makes the level work)
+    //
+    // ===============================================================
+    // ===============================================================
+    
+    private ShuffleboardTab levelTab;
+    public Level2(ShuffleboardTab tab) { this.levelTab = tab; }
     
     @Override
     public Mode getMode() { return Mode.ONCE; }
@@ -86,10 +109,8 @@ public class Level2 extends LevelBase {
     @Override
     public void reset() {
         completed = false;
-        SmartDashboard.putString("Team Name", "Not Set");
-        SmartDashboard.putNumber("Team Number", 0);
-        SmartDashboard.putNumber("Sensor Reading", 0.0);
-        SmartDashboard.putBoolean("Robot Ready", false);
+        // The tab system automatically clears the old UI,
+        // but we can set default values if needed.
     }
     
     @Override

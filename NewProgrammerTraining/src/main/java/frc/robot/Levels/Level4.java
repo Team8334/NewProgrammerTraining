@@ -1,6 +1,8 @@
 // Level4.java
 package frc.robot.Levels;
 import frc.robot.LevelBase;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -46,75 +48,82 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * Success Condition: Correctly identify safe vs unsafe motor speeds
  */
 public class Level4 extends LevelBase {
-    private boolean initialized = false;
-    
+    private SimpleWidget motorSpeedWidget;
+    private SimpleWidget statusWidget;
+    private SimpleWidget canMoveWidget;
+
+    // ===============================================================
+    // ===============================================================
+    //
+    //          ===>  WRITE YOUR CODE IN THE run() METHOD  <===
+    //
+    // ===============================================================
+    // ===============================================================
+
     @Override
     public void run() {
-        // Initialize default values if first run
-        if (!initialized) {
-            SmartDashboard.putNumber("Motor Speed", 0.0);
-            SmartDashboard.putString("Status", "UNKNOWN");
-            SmartDashboard.putBoolean("Can Move", false);
-            initialized = true;
-        }
-        
-        // TODO: Read the motor speed from Shuffleboard
-        // double motorSpeed = SmartDashboard.getNumber("Motor Speed", 0.0);
-        
-        
+        // TODO: Read the motor speed from the Shuffleboard widget
+        double motorSpeed = motorSpeedWidget.getEntry().getDouble(0.0);
+
         // TODO: Check if the speed is safe (between -1.0 and 1.0, inclusive)
         // HINT: A speed is safe if it's >= -1.0 AND <= 1.0
         // Use an if/else statement:
-        
-        // if (motorSpeed >= -1.0 && motorSpeed <= 1.0) {
-        //     // Speed is SAFE
-        //     SmartDashboard.putString("Status", "SAFE");
-        //     SmartDashboard.putBoolean("Can Move", true);
-        // } else {
-        //     // Speed is DANGER
-        //     SmartDashboard.putString("Status", "DANGER");
-        //     SmartDashboard.putBoolean("Can Move", false);
-        // }
-        
-        
-        // TODO: Display the current speed for debugging
-        // SmartDashboard.putNumber("Current Speed", motorSpeed);
-        
-        
-        // Print to console for debugging
-        // System.out.println("Motor Speed: " + motorSpeed + " - Status: " + 
-        //                    SmartDashboard.getString("Status", "UNKNOWN"));
+        if (motorSpeed >= -1.0 && motorSpeed <= 1.0) {
+            // Speed is SAFE
+            statusWidget.getEntry().setString("SAFE");
+            canMoveWidget.getEntry().setBoolean(true);
+        } else {
+            // Speed is DANGEROUS
+            statusWidget.getEntry().setString("DANGER");
+            canMoveWidget.getEntry().setBoolean(false);
+        }
+
+        // Display the current speed for debugging (optional)
+        levelTab.add("Current Speed", motorSpeed);
     }
     
+
+    // ===============================================================
+    // ===============================================================
+    //
+    //          ===>  DO NOT EDIT THE CODE BELOW THIS LINE  <===
+    //          (This is the framework that makes the level work)
+    //
+    // ===============================================================
+    // ===============================================================
+
+    public Level4(ShuffleboardTab tab) {
+        super(tab);
+        // Create the widgets on the tab when the level is loaded
+        motorSpeedWidget = levelTab.add("Motor Speed", 0.0);
+        statusWidget = levelTab.add("Status", "UNKNOWN");
+        canMoveWidget = levelTab.add("Can Move", false);
+        reset();
+    }
+
     @Override
-    public Mode getMode() { 
-        // Loop mode to continuously check the speed
-        return Mode.LOOP; 
-    }
-    
+    public Mode getMode() { return Mode.LOOP; }
+
     @Override
     public void reset() {
-        initialized = false;
-        SmartDashboard.putNumber("Motor Speed", 0.0);
-        SmartDashboard.putString("Status", "UNKNOWN");
-        SmartDashboard.putBoolean("Can Move", false);
-        SmartDashboard.putNumber("Current Speed", 0.0);
+        motorSpeedWidget.getEntry().setDouble(0.0);
+        statusWidget.getEntry().setString("UNKNOWN");
+        canMoveWidget.getEntry().setBoolean(false);
+        levelTab.add("Current Speed", 0.0);
     }
-    
+
     @Override
     public boolean checkSuccess() {
-        // Test multiple scenarios to verify the logic works
-        double speed = SmartDashboard.getNumber("Motor Speed", 0.0);
-        String status = SmartDashboard.getString("Status", "UNKNOWN");
-        boolean canMove = SmartDashboard.getBoolean("Can Move", false);
-        
-        // Check if the logic is correct
+        // Read values directly from the widgets for validation
+        double speed = motorSpeedWidget.getEntry().getDouble(0.0);
+        String status = statusWidget.getEntry().getString("UNKNOWN");
+        boolean canMove = canMoveWidget.getEntry().getBoolean(false);
+
+        // Check if the logic is correct for the current input
         if (speed >= -1.0 && speed <= 1.0) {
-            // Should be SAFE
-            return status.equals("SAFE") && canMove == true;
+            return status.equals("SAFE") && canMove;
         } else {
-            // Should be DANGER
-            return status.equals("DANGER") && canMove == false;
+            return status.equals("DANGER") && !canMove;
         }
     }
 }
