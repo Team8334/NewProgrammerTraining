@@ -28,10 +28,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *        ➤ Wait for "BUILD SUCCESSFUL"
  *   3. In VS Code:
  *        ➤ Press Ctrl+Shift+P → Type "WPILib: Simulate Robot Code"
- *        ➤ Select "Use real DriverStation".
+ *        ➤ Click the check box for "Use real DriverStation".
  *        ➤ Wait for "RUNNING IN SIMULATOR"
- *   4. Go back to Shuffleboard → Look for the "Greeting" field.
- *        ➤ You should see "Waiting..." 
+ *   4. Go back to Shuffleboard → you should see 3 tabs | SmartDashboard | LiveWindow | Level 1 |
+ *        ➤ In the SmartDashboard tab you should see "/SmartDashboard/Level Select" field →  You should see "Level 1 Deploy." 
+ *        ➤ In the Level 1 tab Look for the "Greeting" field →  You should see "Waiting..." 
+ *        ➤ Feel free to resize the UI Boxes
  *   5. Go to FRC Driver Station → Click "Enable Robot"
  *   6. Go back to Shuffleboard → Look for the "Greeting" field.
  *        ➤ If you see "Hello, FRC!" → Status changes to "PASSED" → YOU WIN!
@@ -39,7 +41,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * Important Notes:
  *   - DO NOT edit Robot.java. It’s the engine that runs your levels.
  *   - This level uses Mode.ONCE – The code in the run() method will execute only one time right after you deploy it.
- *   - levelTab.add() sends data to the Driver Station.
+ *   - Shuffleboard methods like 'levelTab.add()' and 'widget.getEntry().setString()' send data to the dashboard.
  *   - System.out.println() prints to the console (Simulator or RioLog).
  *   - reset() clears state when "ResetLevel" is pressed.
  *
@@ -59,9 +61,9 @@ public class Level1 extends LevelBase {
 
     /**
      * A variable to hold our text box widget from Shuffleboard.
-     * We declare it here so the whole class can access it.
-     * Note: It's empty (null) until we create the widget in the constructor.
-    */
+     * Think of this as an empty box that we will put our widget into
+     * once we create it.
+     */
     private SimpleWidget greetingWidget;
 
 
@@ -77,7 +79,6 @@ public class Level1 extends LevelBase {
         // Print to RoboRIO console (visible in VS Code terminal)
         System.out.println("Level 1: Code deployed successfully!");
         
-        
         /*
          * This line updates the text of the widget we created earlier.
          * It looks complex, but it's a chain of commands. Read it left-to-right:
@@ -89,6 +90,7 @@ public class Level1 extends LevelBase {
          * Analogy: Find our specific mailbox (greetingWidget), open the mail slot
          * (.getEntry()), and put in a new letter that says "Hello, FRC!" (.setString(...)).
          * 
+         * Try changing the text "Hello, FRC!"
          */
         greetingWidget.getEntry().setString("Hello, FRC!");
         
@@ -125,7 +127,8 @@ public class Level1 extends LevelBase {
     @Override
     public void reset() {
         completed = false;
-        // UPDATE the value of the existing widget.
+        // UPDATE the value of the existing widget back to "Waiting...".
+        // This is safe because the widget is guaranteed to exist.
         greetingWidget.getEntry().setString("Waiting...");
     }
 

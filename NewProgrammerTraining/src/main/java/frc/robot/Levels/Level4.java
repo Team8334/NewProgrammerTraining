@@ -102,7 +102,7 @@ public class Level4 extends LevelBase {
     }
 
     @Override
-    public Mode getMode() { return Mode.LOOP; }
+    public Mode getMode() { return Mode.PERIODIC; }
 
     @Override
     public void reset() {

@@ -9,18 +9,18 @@ import frc.robot.Levels.*;
 
 public class Robot extends TimedRobot {
     private LevelBase currentLevel;
-    private String selectedLevelName = "Level 1"; 
+    private String selectedLevelName = "Level1"; 
     private boolean hasRunOnce = false;
     private SendableChooser<String> levelChooser = new SendableChooser<>();
 
     @Override public void robotInit() {
       
         // Setup level chooser dropdown
-        levelChooser.setDefaultOption("Level 1: Deploy", "Level 1");
-        levelChooser.addOption("Level 2: Data Types",    "Level 2");
-        levelChooser.addOption("Level 3: Inputs",        "Level 3");
-        levelChooser.addOption("Level 4: Conditionals",  "Level 4");
-        levelChooser.addOption("Level 5: Else-If",       "Level 5");
+        levelChooser.setDefaultOption("Level 1: Deploy", "Level1");
+        levelChooser.addOption("Level 2: Data Types",    "Level2");
+        levelChooser.addOption("Level 3: Inputs",        "Level3");
+        levelChooser.addOption("Level 4: Conditionals",  "Level4");
+        levelChooser.addOption("Level 5: Else-If",       "Level5");
 
         // Add more levels here as you create them
 
@@ -56,7 +56,7 @@ public class Robot extends TimedRobot {
                         hasRunOnce = true;
                     }
                     break;
-                case LOOP:
+                case PERIODIC:
                     currentLevel.run();
                     break;
                 // 'WAIT' mode removed for simplicity unless needed
@@ -71,31 +71,23 @@ public class Robot extends TimedRobot {
         }
     }
 
-    private void loadLevel(String name) {
-        ShuffleboardTab levelTab = Shuffleboard.getTab(name);
-        Shuffleboard.selectTab(name);
-        
-        hasRunOnce = false;
-        
-        String className = name.replace(" ", "").replace(":", "");
-        if (name.equals("Level 1: Deploy")) className = "Level1";
-        if (name.equals("Level 2: Data Types")) className = "Level2";
-        if (name.equals("Level 3: Inputs")) className = "Level3";
-        if (name.equals("Level 4: Conditionals")) className = "Level4";
-        if (name.equals("Level 5: Else-If")) className = "Level5";
-        
-        try {
-            currentLevel = (LevelBase) Class.forName("frc.robot.Levels." + className)
-                             .getConstructor(ShuffleboardTab.class).newInstance(levelTab);
-            
-            // The level's constructor will now create the widgets.
-            // Then we call reset to set their initial values.
-            currentLevel.reset(); 
-
-            System.out.println(name + " loaded successfully.");
-        } catch (Exception e) { 
-            System.err.println("LOAD FAILED for class " + className + ": " + e); 
-            e.printStackTrace();
-        }
+    private void loadLevel(String name) { // 'name' is now the class name, e.g., "Level1"
+    // Create a user-friendly tab name with a space
+    String tabName = name.replaceAll("(\\d)", " $1"); // Turns "Level1" into "Level 1"
+    ShuffleboardTab levelTab = Shuffleboard.getTab(tabName);
+    Shuffleboard.selectTab(tabName);
+    
+    hasRunOnce = false;
+    
+    try {
+        // No more if-statements needed! 'name' is the className.
+        currentLevel = (LevelBase) Class.forName("frc.robot.Levels." + name)
+                         .getConstructor(ShuffleboardTab.class).newInstance(levelTab);
+        currentLevel.reset();
+        System.out.println(tabName + " loaded successfully.");
+    } catch (Exception e) { 
+        System.err.println("LOAD FAILED for class " + name + ": " + e); 
+        e.printStackTrace();
     }
+}
 }

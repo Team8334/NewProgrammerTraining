@@ -7,46 +7,38 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * LEVEL 2: UNDERSTANDING DATA TYPES
  *
- * This level teaches you about Java's basic data types and how to display them.
+ * This level teaches you about Java's basic data types, which are the
+ * fundamental building blocks of programming.
  *
  * You will learn how to:
- *   - Create variables with different data types
- *   - Display values on the SmartDashboard
- *   - Understand how different types are used in robotics
+ *   - Declare variables for the four most common data types.
+ *   - Assign values to those variables.
+ *   - Display all four types on Shuffleboard.
  *
- * DATA TYPES ARE THE BUILDING BLOCKS OF PROGRAMMING!
- * Understanding types helps you work with sensors, motors, and game data.
+ * DATA TYPES ARE THE "NOUNS" OF PROGRAMMING.
+ * They represent all the information your robot will ever use, from sensor
+ * readings to motor speeds to game objectives.
  *
  * How to Complete This Level:
- *   1. Look at the run() method below - it has TODO comments
- *   2. Create four variables with these types:
- *      - String: For text (like "Robot Ready!")
- *      - int: For whole numbers (like 42)
- *      - double: For decimal numbers (like 3.14)
- *      - boolean: For true/false values
- *   3. Display each variable on SmartDashboard using the right method:
- *      - putString() for String
- *      - putNumber() for int and double
- *      - putBoolean() for boolean
- *   4. Build your code
- *   5. Run your code in simulation
- *   6. Go back to Shuffleboard and change the LevelSelector to Level 2
- *   6. Enable the simulated Robot in FRC Driver Station
- *   5. Check Shuffleboard to see your values
+ *   1. Go to the run() method below. You will see several "// TODO" comments. (look how VScode makes it blue)
+ *   2. Follow the instructions to declare and assign a value to each variable.
+ *   3. Uncomment the four 'levelTab.add(...)' lines to display your variables.
+ *   4. Uncomment the final line: 'completed = true;'
+ *   5. Build and Deploy/Simulate your code, just like in Level 1.
+ *   6. On Shuffleboard Level Select, select the "Level 2" tab.
+ *   7. In the FRC Driver Station, click "Enable Robot".
+ *   8. Check the "Level 2" tab. If you see all four of your values displayed
+ *      correctly, the Status will change to "PASSED" → YOU WIN!
  *
  * Important Notes:
- *   - String values need quotes: "like this"
- *   - int values are whole numbers: 1, 2, 3
- *   - double values can have decimals: 1.5, 2.75
- *   - boolean values are only true or false
- *   - SmartDashboard has different methods for different types
+ *   - String: Used for text, must be in "double quotes".
+ *   - int: Used for whole numbers (integers).
+ *   - double: Used for numbers with decimals.
+ *   - boolean: Can only be 'true' or 'false'.
+ *   - The 'levelTab.add()' command is smart and handles all these types automatically.
  *
- * What You're Learning:
- *   - Java's basic data types
- *   - Variable declaration and assignment
- *   - Sending different types of data to SmartDashboard
- *
- * Success Condition: All four values appear correctly on SmartDashboard
+ * Success Condition: All four variables are declared and their values appear
+ *                    correctly on the "Level 2" tab.
  */
 public class Level2 extends LevelBase {
     private boolean completed = false;
@@ -63,28 +55,32 @@ public class Level2 extends LevelBase {
     public void run() {
         System.out.println("Level 2: Working with data types");
         
-        // TODO: Create a String variable with your team name or a message
+        // TODO 1: Create a String variable to hold a message.
+        // A String is used for any text data.
         // Example: String teamName = "Titan Robotics";
         
         
-        // TODO: Create an int variable for a whole number (like team number)
+        // TODO 2: Create an int variable to hold a whole number.
+        // An int is used for numbers without decimal points, like a team number.
         // Example: int teamNumber = 8334;
         
         
-        // TODO: Create a double variable for a decimal number (like sensor reading)
+        // TODO 3: Create a double variable to hold a decimal number.
+        // A double is used for precise measurements, like from a sensor.
         // Example: double sensorValue = 3.14159;
         
         
-        // TODO: Create a boolean variable (true/false)
+        // TODO 4: Create a boolean variable to hold a true/false state.
+        // A boolean is like a light switch: it can only be on (true) or off (false).
         // Example: boolean robotReady = true;
         
         
-        // TODO: Display all variables on SmartDashboard
-        // We now use the 'levelTab' variable to keep the UI clean.
+        // TODO 5: UNCOMMENT the four lines below to display your variables.
+        // Notice that we use the same 'levelTab.add()' command for every type.
         //levelTab.add("Team Name", teamName);
         //levelTab.add("Team Number", teamNumber);
         //levelTab.add("Sensor Reading", sensorValue);
-        //levelTab.add("Robot Enabled", isEnabled);
+        //levelTab.add("Robot Ready", robotReady);
         
         // Uncomment this line when you've completed the tasks
         // completed = true;
@@ -100,21 +96,26 @@ public class Level2 extends LevelBase {
     // ===============================================================
     // ===============================================================
     
-    private ShuffleboardTab levelTab;
-    public Level2(ShuffleboardTab tab) { this.levelTab = tab; }
-    
-    @Override
-    public Mode getMode() { return Mode.ONCE; }
-    
-    @Override
-    public void reset() {
-        completed = false;
-        // The tab system automatically clears the old UI,
-        // but we can set default values if needed.
-    }
-    
-    @Override
-    public boolean checkSuccess() {
-        return completed;
-    }
+  // The constructor runs ONCE to set up the level.
+  public Level2(ShuffleboardTab tab) {
+    super(tab); // This line passes the tab to the parent class.
+    reset();    // This calls our reset() method to set the initial UI.
+}
+
+@Override
+public Mode getMode() { 
+    // We only need to declare our variables once.
+    return Mode.ONCE; 
+}
+
+@Override
+public void reset() {
+    completed = false;
+}
+
+@Override
+public boolean checkSuccess() {
+    // This returns 'true' once you uncomment 'completed = true;' in the run() method.
+    return completed;
+}
 }

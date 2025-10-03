@@ -17,7 +17,7 @@ public abstract class LevelBase {
      * LOOP: run() is called every 20ms in a loop.
      */
     public enum Mode { 
-        LOOP,  // run() is called every 20ms
+        PERIODIC,  // run() is called every 20ms
         ONCE;  // run() is called one time after level load or reset
     }
 

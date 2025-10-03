@@ -130,7 +130,7 @@ import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
     }
 
     @Override
-    public Mode getMode() { return Mode.LOOP; }
+    public Mode getMode() { return Mode.PERIODIC; }
 
     @Override
     public void reset() {
