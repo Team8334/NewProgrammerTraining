@@ -28,7 +28,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *        ➤ Wait for "BUILD SUCCESSFUL"
  *   3. In VS Code:
  *        ➤ Press Ctrl+Shift+P → Type "WPILib: Simulate Robot Code"
- *        ➤ Click the check box for "Use real DriverStation".
+ *        ➤ Click the check box for  "Use real DriverStation".
  *        ➤ Wait for "RUNNING IN SIMULATOR"
  *   4. Go back to Shuffleboard → you should see 3 tabs | SmartDashboard | LiveWindow | Level 1 |
  *        ➤ In the SmartDashboard tab you should see "/SmartDashboard/Level Select" field →  You should see "Level 1 Deploy." 

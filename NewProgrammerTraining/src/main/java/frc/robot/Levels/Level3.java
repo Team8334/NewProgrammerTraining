@@ -4,6 +4,7 @@ import frc.robot.LevelBase;
 
 import java.util.DuplicateFormatFlagsException;
 
+import edu.wpi.first.networktables.GenericEntry;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
@@ -45,8 +46,8 @@ import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
 public class Level3 extends LevelBase {
     // Framework variables to hold our three Shuffleboard widgets.
     // We create them in the constructor so we can read from/write to them later.
-    private SimpleWidget numberAWidget;
-    private SimpleWidget numberBWidget;
+    private GenericEntry  numberAWidget;
+    private GenericEntry  numberBWidget;
     private SimpleWidget sumWidget;
 
     // ===============================================================
@@ -61,17 +62,17 @@ public class Level3 extends LevelBase {
         // Since this method is a loop, these lines will run over and over every 20ms.
 
         // TODO 1: Read the number from the "Number A" widget and store it in a variable.
-        double numberA = numberAWidget.getEntry().getDouble(0.0);
+        double numberA = numberAWidget.getDouble(0.0);
         
         // TODO 2: Read the number from the "Number B" widget.
-        double numberB = numberBWidget.getEntry().getDouble(0.0);
+        double numberB = numberBWidget.getDouble(0.0);
         
         // TODO 3: Calculate the sum of numberA and numberB and store it in a new variable.
         //I dont think you need help on this one 
         double sum = numberA + numberB;
         
         // TODO 4: Display the calculated sum in the "Sum" widget.
-        sumWidget.getEntry().setDouble(300);
+        sumWidget.getEntry().setDouble(sum);
 
 
         // For debugging, you can print the values to the console.
@@ -90,8 +91,8 @@ public class Level3 extends LevelBase {
 
         // CREATE the widgets ONCE and store them in our variables.
         // The user will be able to type into "Number A" and "Number B".
-        numberAWidget = levelTab.add("Number A", 0.0);
-        numberBWidget = levelTab.add("Number B", 0.0);
+        numberAWidget = levelTab.add("Number A", 0.0).getEntry();
+        numberBWidget = levelTab.add("Number B", 0.0).getEntry();
 
         // "Sum" is for display only. We can disable the text box so users can't edit it.
         sumWidget = levelTab.add("Sum", 0.0);
@@ -112,8 +113,8 @@ public class Level3 extends LevelBase {
     public boolean checkSuccess() {
         // This method automatically checks if your calculation is correct.
         // It reads the inputs and compares them to the displayed sum.
-        double a = numberAWidget.getEntry().getDouble(0.0);
-        double b = numberBWidget.getEntry().getDouble(0.0);
+        double a = numberAWidget.getDouble(0.0);
+        double b = numberBWidget.getDouble(0.0);
         double displayedSum = sumWidget.getEntry().getDouble(0.0);
         
         // Because computers can have tiny errors with decimal numbers (doubles),
