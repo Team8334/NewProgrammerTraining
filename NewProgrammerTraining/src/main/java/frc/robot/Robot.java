@@ -1,8 +1,6 @@
 // Robot.java
 package frc.robot;
 import edu.wpi.first.wpilibj.*;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Levels.*;
@@ -72,22 +70,25 @@ public class Robot extends TimedRobot {
     }
 
     private void loadLevel(String name) { // 'name' is now the class name, e.g., "Level1"
-    // Create a user-friendly tab name with a space
-    String tabName = name.replaceAll("(\\d)", " $1"); // Turns "Level1" into "Level 1"
-    ShuffleboardTab levelTab = Shuffleboard.getTab(tabName);
-    Shuffleboard.selectTab(tabName);
+        // Create a user-friendly name with a space, e.g., "Level 1"
+        String userFriendlyName = name.replaceAll("(\\d)", " $1"); 
+        
     
-    hasRunOnce = false;
-    
-    try {
-        // No more if-statements needed! 'name' is the className.
-        currentLevel = (LevelBase) Class.forName("frc.robot.Levels." + name)
-                         .getConstructor(ShuffleboardTab.class).newInstance(levelTab);
-        currentLevel.reset();
-        System.out.println(tabName + " loaded successfully.");
-    } catch (Exception e) { 
-        System.err.println("LOAD FAILED for class " + name + ": " + e); 
-        e.printStackTrace();
+        hasRunOnce = false;
+
+        // This entry helps identify the current level on the dashboard. In Elastic,
+        // you can see all entries under this "grouping."
+        SmartDashboard.putString("Current Level", userFriendlyName);
+
+        try {
+            // The constructor for the Level class now needs to accept a String.
+            currentLevel = (LevelBase) Class.forName("frc.robot.Levels." + name)
+                             .getConstructor(String.class).newInstance(userFriendlyName);
+            currentLevel.reset();
+            System.out.println(userFriendlyName + " loaded successfully.");
+        } catch (Exception e) { 
+            System.err.println("LOAD FAILED for class " + name + ": " + e); 
+            e.printStackTrace();
+        }
     }
-}
 }

@@ -59,14 +59,6 @@ public class Level1 extends LevelBase {
      */
     private boolean completed = false;
 
-    /**
-     * A variable to hold our text box widget from Shuffleboard.
-     * Think of this as an empty box that we will put our widget into
-     * once we create it.
-     */
-    private SimpleWidget greetingWidget;
-
-
     // ===============================================================
     // ===============================================================
     //
@@ -92,7 +84,7 @@ public class Level1 extends LevelBase {
          * 
          * Try changing the text "Hello, FRC!"
          */
-        greetingWidget.getEntry().setString("Hello, FRC!");
+        SmartDashboard.putString(levelName + "/Greeting", "Hello, FRC!");
         
         // Mark level as complete
         completed = true;
@@ -108,17 +100,12 @@ public class Level1 extends LevelBase {
     // ===============================================================
 
 
-    public Level1(ShuffleboardTab tab) {
-        super(tab); // Pass the tab to the parent class
+    public Level1(String name) {
+        super(name); // Assumes LevelBase constructor is updated to take a String
+        this.levelName = name;
         
-        /*
-         * CREATE the widget ONCE and store it in our variable.
-         * The 'levelTab.add(...)' method does two things:
-         *   1. It creates a new text box on Shuffleboard.
-         *   2. It returns an object representing that widget.
-         * We save that object in our 'greetingWidget' variable so we can update it later.
-         */
-        greetingWidget = levelTab.add("Greeting", "Waiting...");
+        // Initialize the "Greeting" value on the dashboard under our level's name
+        reset();
     }
 
     @Override
@@ -127,9 +114,6 @@ public class Level1 extends LevelBase {
     @Override
     public void reset() {
         completed = false;
-        // UPDATE the value of the existing widget back to "Waiting...".
-        // This is safe because the widget is guaranteed to exist.
-        greetingWidget.getEntry().setString("Waiting...");
     }
 
     @Override

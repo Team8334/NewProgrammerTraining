@@ -21,11 +21,7 @@ public abstract class LevelBase {
         ONCE;  // run() is called one time after level load or reset
     }
 
-    /**
-     * The Shuffleboard tab dedicated to this level.
-     * All UI components should be added to this tab to keep the dashboard clean.
-     */
-    protected ShuffleboardTab levelTab;
+    public String levelName;
 
     /**
      * This is the main logic for the level.
@@ -59,8 +55,8 @@ public abstract class LevelBase {
      * Constructor used by the framework to provide a dedicated Shuffleboard tab.
      * @param tab The Shuffleboard tab for this level's UI.
      */
-    public LevelBase(ShuffleboardTab tab) {
-        this.levelTab = tab;
+    public LevelBase(String name) {
+        this.levelName = name;
     }
 
     // This method was in the original Robot.java but is not used in the refactor.

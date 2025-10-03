@@ -1,8 +1,7 @@
 // Level4.java
 package frc.robot.Levels;
 import frc.robot.LevelBase;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
-import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -18,14 +17,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  * How to Complete This Level:
  *   1. You're building a simple speed limiter for robot safety
- *   2. In Shuffleboard, you'll see a "Motor Speed" input field
+ *   2. In the Elastic dashboard, find the "/SmartDashboard/Level 4/Motor Speed" entry and add it to your grid.
  *   3. Complete the code to:
- *      - Read the motor speed from Shuffleboard
+ *      - Read the motor speed from the dashboard
  *      - Check if speed is safe (between -1.0 and 1.0)
  *      - If safe: Set "Status" to "SAFE" and "Can Move" to true
  *      - If unsafe: Set "Status" to "DANGER" and "Can Move" to false
  *      - Display the actual speed value
- *   4. Test with different speeds in Shuffleboard
+ *   4. Test with different speeds in the Elastic widget
  *   5. Level passes when your logic works correctly
  *
  * Important Notes:
@@ -48,9 +47,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * Success Condition: Correctly identify safe vs unsafe motor speeds
  */
 public class Level4 extends LevelBase {
-    private SimpleWidget motorSpeedWidget;
-    private SimpleWidget statusWidget;
-    private SimpleWidget canMoveWidget;
+
+    private final NetworkTableEntry motorSpeedEntry;
+    private final NetworkTableEntry statusEntry;
+    private final NetworkTableEntry canMoveEntry;
 
     // ===============================================================
     // ===============================================================
@@ -62,27 +62,27 @@ public class Level4 extends LevelBase {
 
     @Override
     public void run() {
-        // TODO: Read the motor speed from the Shuffleboard widget
-        double motorSpeed = motorSpeedWidget.getEntry().getDouble(0.0);
+        // TODO: Read the motor speed from the dashboard
+        double motorSpeed = motorSpeedEntry.getDouble(0.0);
 
         // TODO: Check if the speed is safe (between -1.0 and 1.0, inclusive)
         // HINT: A speed is safe if it's >= -1.0 AND <= 1.0
         // Use an if/else statement:
         if (motorSpeed >= -1.0 && motorSpeed <= 1.0) {
             // Speed is SAFE
-            statusWidget.getEntry().setString("SAFE");
-            canMoveWidget.getEntry().setBoolean(true);
+            statusEntry.setString("SAFE");
+            canMoveEntry.setBoolean(true);
         } else {
             // Speed is DANGEROUS
-            statusWidget.getEntry().setString("DANGER");
-            canMoveWidget.getEntry().setBoolean(false);
+            statusEntry.setString("DANGER");
+            canMoveEntry.setBoolean(false);
         }
 
-        // Display the current speed for debugging (optional)
-        levelTab.add("Current Speed", motorSpeed);
+        // Display the current speed for debugging (optional). 
+        // We already read it, but this shows how you could display a processed value.
+        SmartDashboard.putNumber(levelName + "/Current Speed", motorSpeed);
     }
     
-
     // ===============================================================
     // ===============================================================
     //
@@ -92,12 +92,13 @@ public class Level4 extends LevelBase {
     // ===============================================================
     // ===============================================================
 
-    public Level4(ShuffleboardTab tab) {
-        super(tab);
-        // Create the widgets on the tab when the level is loaded
-        motorSpeedWidget = levelTab.add("Motor Speed", 0.0);
-        statusWidget = levelTab.add("Status", "UNKNOWN");
-        canMoveWidget = levelTab.add("Can Move", false);
+    public Level4(String name) {
+        super(name);
+        // Get the NetworkTableEntry for each piece of data.
+        // The level name (e.g., "Level 4") is used as a prefix to group them.
+        motorSpeedEntry = SmartDashboard.getEntry(name + "/Motor Speed");
+        statusEntry = SmartDashboard.getEntry(name + "/Status");
+        canMoveEntry = SmartDashboard.getEntry(name + "/Can Move");
         reset();
     }
 
@@ -106,21 +107,23 @@ public class Level4 extends LevelBase {
 
     @Override
     public void reset() {
-        motorSpeedWidget.getEntry().setDouble(0.0);
-        statusWidget.getEntry().setString("UNKNOWN");
-        canMoveWidget.getEntry().setBoolean(false);
-        levelTab.add("Current Speed", 0.0);
+        motorSpeedEntry.setDouble(0.0);
+        statusEntry.setString("UNKNOWN");
+        canMoveEntry.setBoolean(false);
+        SmartDashboard.putNumber(levelName + "/Current Speed", 0.0);
     }
 
     @Override
     public boolean checkSuccess() {
-        // Read values directly from the widgets for validation
-        double speed = motorSpeedWidget.getEntry().getDouble(0.0);
-        String status = statusWidget.getEntry().getString("UNKNOWN");
-        boolean canMove = canMoveWidget.getEntry().getBoolean(false);
+        // Read values directly from the dashboard entries for validation
+        double speed = motorSpeedEntry.getDouble(0.0);
+        String status = statusEntry.getString("UNKNOWN");
+        boolean canMove = canMoveEntry.getBoolean(false);
 
         // Check if the logic is correct for the current input
-        if (speed >= -1.0 && speed <= 1.0) {
+        boolean isSafe = speed >= -1.0 && speed <= 1.0;
+        
+        if (isSafe) {
             return status.equals("SAFE") && canMove;
         } else {
             return status.equals("DANGER") && !canMove;
