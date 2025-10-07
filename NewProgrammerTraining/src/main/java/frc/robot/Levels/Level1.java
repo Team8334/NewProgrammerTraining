@@ -1,56 +1,98 @@
 // Level1.java
 package frc.robot.Levels;
 import frc.robot.LevelBase;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
-import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * LEVEL 1: YOUR FIRST CODE - COMPILE & DEPLOY
+ * =================================================================================================
+ * LEVEL 1: YOUR FIRST PROGRAM - GETTING CODE ONTO THE ROBOT
+ * =================================================================================================
  *
- * This level teaches you the core FRC programming workflow:
- *   1. Write Code → 2. Build → 3. Deploy → 4. Verify
+ * Welcome to FRC programming! This first level will teach you the most important skill:
+ * the basic workflow for writing and running robot code.
  *
- * You will learn how to:
- *   - Use VS Code to write Java code.
- *   - Compile your code using WPILib's build system.
- *   - Deploy it to the RoboRIO or run in simulation.
- *   - View output on Shuffleboard.
+ * This cycle is what you will do every time you program the robot:
+ *   1. Write Code (like you're doing now)
+ *   2. Build Code (check for errors)
+ *   3. Deploy Code (send it to a real or simulated robot)
+ *   4. Test & Verify (check that it works as expected)
  *
- * THIS IS THE FOUNDATION OF EVERYTHING YOU DO IN FRC.
- * Master this cycle, and you’re ready for anything!
+ * ---
  *
- * How to Complete This Level:
- *   1. Open Elastic on your laptop.
- *   2. Open FRC Driver Station on your laptop and say yes to the pop up question.
- *   2. In VS Code:
- *        ➤ Press Ctrl+Shift+P → Type/Select "WPILib: Build Robot Code"
- *        ➤ Wait for "BUILD SUCCESSFUL"
- *   3. In VS Code:
- *        ➤ Press Ctrl+Shift+P → Type "WPILib: Simulate Robot Code"
- *        ➤ Click the check box for  "Use real DriverStation" at top of the screen click ok.
- *        ➤ Wait for "RUNNING IN SIMULATOR"
- *   4. Go back to Elastic → you should see 3 tabs | SmartDashboard | LiveWindow | Level 1 |
- *        ➤ In the SmartDashboard tab you should see "/SmartDashboard/Level Select" field →  You should see "Level 1 Deploy." 
- *        ➤ In the Level 1 tab Look for the "Greeting" field →  You should see "Waiting..." 
- *        ➤ Feel free to resize the UI Boxes
- *   5. Go to FRC Driver Station → (Shout Enabling Robot!!) Click "Enable Robot"
- *   6. Go back to Shuffleboard → Look for the "Greeting" field.
- *        ➤ If you see "Hello, FRC!" → Status changes to "PASSED" → YOU WIN!
+ * WHAT YOU WILL LEARN IN THIS LEVEL:
+ *  - How to "Build" your code to check for typos and other basic errors.
+ *  - How to run your code on a "simulated" robot on your computer.
+ *  - How to use the dashboard (Elastic) to see data from your robot code.
  *
- * Important Notes:
- *   - DO NOT edit Robot.java. It’s the engine that runs your levels.
- *   - This level uses Mode.ONCE – The code in the run() method will execute only one time right after you deploy it.
- *   - Shuffleboard methods like 'levelTab.add()' and 'widget.getEntry().setString()' send data to the dashboard.
- *   - System.out.println() prints to the console (Simulator or RioLog).
- *   - reset() clears state when "ResetLevel" is pressed.
+ * ---
  *
- * What You're Learning:
- *   - Compile code using WPILib's build system.
- *   - Deploy code to the RoboRIO or run in simulation.
- *   - SmartDashboard: Visualize data from robot.
+ * YOUR GOAL:
+ *  - Make the message "Hello, FRC!" appear on the dashboard.
  *
- * Success Condition: "Greeting" shows "Hello, FRC!" and Status says "PASSED".
+ * =================================================================================================
+ *
+ * BEFORE YOU START - CHECK YOUR SETUP:
+ * You will need these three programs running on your computer.
+ *
+ *  1. WPILib VS Code: This is where you are reading and writing code.
+ *     (You can tell it's the right version if you see a red and gray </> icon in the top-right corner).
+ *
+ *  2. FRC Driver Station: This is the program you use to control the robot.
+ *     (It looks like a control panel with lots of buttons and indicators).
+ *
+*  3. Elastic: This is your robot's "dashboard." It's a separate app where you can see data,
+ *     like sensor readings or messages you send from the code.
+ *
+ * =================================================================================================
+ *
+ * STEP-BY-STEP INSTRUCTIONS TO COMPLETE THE LEVEL:
+ *
+ * === PART 1: GET THE SIMULATOR RUNNING ===
+ *
+ *   1. Open the FRC Driver Station software. If a pop-up asks about usage reporting, you can choose either option.
+ *   2. Open the Elastic dashboard software.
+ *
+ *   3. In VS Code (this window), press `Ctrl+Shift+P` to open the command palette.
+ *        ➤ A search bar will appear at the top of the screen.
+ *        ➤ Type `WPILib: Build Robot Code` and press Enter.
+ *        ➤ Wait for the "BUILD SUCCESSFUL" message in the terminal at the bottom. This means your code has no errors!
+ *
+ *   4. Now, press `Ctrl+Shift+P` again.
+ *        ➤ This time, type `WPILib: Simulate Robot Code` and press Enter.
+ *        ➤ A small pop-up will appear. Check the box for "Use real DriverStation" and click OK.
+ *        ➤ Wait for the terminal to show that the code is running in the simulator.
+ *
+ * === PART 2: CONNECT THE DASHBOARD AND ENABLE THE ROBOT ===
+ *
+ *   5. Go to the Elastic window.
+ *        ➤ In the top-left, click the "+ Add Widget" button to open the menu.
+ *        ➤ Find the "SmartDashboard" section and expand it.
+ *        ➤ Drag these three widgets onto your dashboard screen:
+ *             - "Level Select"
+ *             - "Current level"
+ *             - "Reset Level"
+ *        ➤ In the "Level Select" widget you just added, you should see "Level 1 Deploy."
+ *
+ *   6. Go to the FRC Driver Station window.
+ *        ➤ Find the big "Enable" button. Click it to turn the (simulated) robot on.
+ *        ➤ It's a good habit to shout "ENABLING!" so people around you know the robot is live.
+ *
+ * === PART 3: CHECK YOUR WORK AND COMPLETE THE LEVEL ===
+ *
+ *   7. Go back to Elastic one last time.
+ *        ➤ Open the "+ Add Widget" menu again.
+ *        ➤ A new widget called "Level 1" should now be in the "SmartDashboard" list. Drag it onto your screen.
+ *
+ *   8. Look at the "Level 1" widget you just added.
+ *        ➤ Find the "Greeting" field.
+ *        ➤ If it says "Hello, FRC!" and the "Current level" widget says "PASSED" ... YOU DID IT!
+ *
+ * ---
+ *
+ * Important Note: Do not edit the Robot.java file. That file is the engine that runs these levels.
+ * Your work for this level is only to run the code as-is.
+ *
+ * =================================================================================================
  */
 public class Level1 extends LevelBase {
     /** 
@@ -68,25 +110,24 @@ public class Level1 extends LevelBase {
     // ===============================================================
     
     public void run() {
-        // Print to RoboRIO console (visible in VS Code terminal)
+        // This line prints a message to the VS Code terminal. It's a good way
+        // to confirm that your code is actually running.
         System.out.println("Level 1: Code deployed successfully!");
-        
+
         /*
-         * This line updates the text of the widget we created earlier.
-         * It looks complex, but it's a chain of commands. Read it left-to-right:
+         * This next line is the most important one!
+         * It sends a piece of data from the robot code to the Elastic dashboard.
          *
-         * 1. greetingWidget: Start with our variable that holds the widget.
-         * 2. .getEntry():   From that widget, get its underlying data "entry".
-         * 3. .setString():  On that entry, set its String (text) value.
+         *   SmartDashboard.putString(KEY, VALUE);
          *
-         * Analogy: Find our specific mailbox (greetingWidget), open the mail slot
-         * (.getEntry()), and put in a new letter that says "Hello, FRC!" (.setString(...)).
-         * 
-         * Try changing the text "Hello, FRC!"
+         *   - The KEY is the name of the data, like a label. Here, we're calling it "Level 1/Greeting".
+         *   - The VALUE is the actual information you want to send. Here, it's the text "Hello, FRC!".
+         *
+         * You can try changing the text inside the quotes to see it update on the dashboard!
          */
         SmartDashboard.putString(levelName + "/Greeting", "Hello, FRC!");
-        
-        // Mark level as complete
+
+        // This tells the level framework that we have successfully run our code.
         completed = true;
     }
 

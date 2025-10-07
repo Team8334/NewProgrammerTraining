@@ -1,47 +1,76 @@
-// Level3.java
 package frc.robot.Levels;
 import frc.robot.LevelBase;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * LEVEL 3: INPUTS, CALCULATIONS, AND LOOPS
+ * =================================================================================================
+ * LEVEL 3: LIVE INPUTS, CALCULATIONS, AND LOOPS
+ * =================================================================================================
  *
- * This level teaches you how to read live inputs, perform math, and display
- * the results in a continuous loop.
+ * This level teaches you the core logic loop of a robot: reading live data,
+ * thinking (doing math), and showing the result.
  *
  * You will learn how to:
- *   - Read number values that a user types into the Elastic dashboard.
- *   - Use a variable to store the result of a calculation.
- *   - Run code continuously to create a live-updating display.
+ *   - Read numbers that a user types into the Elastic dashboard.
+ *   - Perform a simple calculation with those numbers.
+ *   - Run code over and over in a continuous loop to create a live-updating display.
  *
- * THIS IS THE CORE LOGIC OF A ROBOT: READ SENSORS -> THINK -> CONTROL MOTORS
+ * This is the fundamental pattern of all robotics:
+ *   READ SENSORS  ->  THINK/CALCULATE  ->  CONTROL MOTORS
  *
- * How to Complete This Level:
- *   1. Build and Deploy/Simulate this code.
- *   2. Open the Elastic dashboard.
- *   3. In the "Level Select" dropdown, choose "Level 3".
- *   4. Create a new tab in Elastic and name it "Level 3".
- *   5. Go to the "Unassigned" tab to find the data this level is sending.
- *        ➤ You will see "/SmartDashboard/Level 3/Number A", ".../Number B", and ".../Sum".
- *   6. Drag those three items onto your "Level 3" tab to create widgets.
- *   7. Click on the "Number A" and "Number B" widgets and type in different numbers.
- *   8. Go to the run() method below and follow the TODO instructions.
- *   9. Your goal is to make the "Sum" widget correctly show the sum of A + B.
- *        ➤ For example, if A is 5 and B is 10, Sum should show 15.
- *  10. The level will pass automatically once your calculation is correct.
+ * In this level, your keyboard and the dashboard are the "sensors," and the "Sum"
+ * display is your "motor."
  *
- * Important Notes:
- *   - This level uses Mode.PERIODIC – the run() method is a loop that
- *     executes about 50 times per second.
- *   - We use .getDouble(0.0) to READ a number from the dashboard.
- *   - The '0.0' is a default value, used if the value can't be found.
- *   - We use .setDouble(sum) to WRITE a number to the dashboard.
+ * ---
  *
- * Success Condition: The "Sum" widget correctly displays the sum of A + B.
+ * YOUR GOAL:
+ *  - Make a simple calculator. Read two numbers from the dashboard, add them
+ *    together, and display the result in a "Sum" widget.
+ *
+ * =================================================================================================
+ *
+ * ===>  VERY IMPORTANT NOTE FOR THIS LEVEL  <===
+ *
+ * When you simulate this code, you will need to type numbers into the dashboard.
+ * If you use the "real DriverStation," pressing the Enter key on your keyboard will
+ * also DISABLE the robot, which is very frustrating.
+ *
+ * TO AVOID THIS PROBLEM:
+ * When you select "WPILib: Simulate Robot Code":
+ *   - A small pop-up will appear at the top of VS Code.
+ *   - **DO NOT** check the box for "Use real DriverStation".
+ *   - Just click "OK" with the box unchecked.
+ *
+ * A simulated Driver Station will appear on your screen for you to enable the robot.
+ *
+ * =================================================================================================
+ *
+ * STEP-BY-STEP INSTRUCTIONS:
+ *
+ *   1. Build and Simulate your code (remember the note above!).
+ *
+ *   2. In Elastic, use the "Level Select" widget to choose "Level 3".
+ *
+ *   3. Find the new widgets for this level. They will be under the SmartDashboard dropdown
+ *      and will be named "Number A", "Number B", and "Sum".
+ *
+ *   4. Drag all three widgets onto your dashboard.
+ *
+ *   5. Double-click the value box for "Number A" and "Number B" and type in a number.
+ *      Press Enter to confirm.
+ *
+ *   6. Now, go to the `run()` method below and complete the TODOs. Your job is to make
+ *      the "Sum" widget correctly show the sum of A + B.
+ *
+ *   7. The level will automatically pass once your calculation is correct.
+ *
+ * =================================================================================================
  */
 public class Level3 extends LevelBase {
-    // These variables hold the connection to our dashboard data.
+    // These variables are special. They are not just storing a number, they are
+    // creating a permanent, live connection to a widget on the dashboard.
+    // Think of `NetworkTableEntry` as a direct phone line to that specific widget.
     private final NetworkTableEntry numberAEntry;
     private final NetworkTableEntry numberBEntry;
     private final NetworkTableEntry sumEntry;
@@ -55,56 +84,64 @@ public class Level3 extends LevelBase {
     // ===============================================================
     
     public void run() {
-        // Since this method is a loop, these lines will run over and over every 20ms.
+        // Because this level is in "PERIODIC" mode, the code inside this `run()` method
+        // will execute from top to bottom about 50 times every second.
 
-        // TODO 1: Read the number from the "Number A" widget and store it in a variable.
-        double numberA = numberAEntry.getDouble(0.0);
+        // TODO 1: Read the current value from the "Number A" widget.
+        // We use our special "network table" variable and ask it to `.getDouble()`.
+        // The `0.0` is a default value to use if it can't connect to the dashboard.
+        // double numberA = numberAEntry.getDouble(0.0);
         
-        // TODO 2: Read the number from the "Number B" widget.
-        double numberB = numberBEntry.getDouble(0.0);
+        // TODO 2: Do the same for the "Number B" widget. Read its value.
+        // double numberB = numberBEntry.getDouble(0.0);
         
-        // TODO 3: Calculate the sum of numberA and numberB and store it in a new variable.
-        // I dont think you need help on this one
-        double sum = numberA + numberB;
-
+        // TODO 3: Calculate the sum of numberA and numberB.
+        // Store the result in a new `double` variable called `sum`. 
+        // double sum = 0; (change this line)
         
-        // TODO 4: Display the calculated sum in the "Sum" widget.
-        sumEntry.setDouble(sum);
+        // TODO 4: Send your calculated `sum` back to the "Sum" widget on the dashboard.
+        // This uses the "phone line" for the sum widget to `.setDouble()` its value.
+        // sumEntry.setDouble(sum);
 
 
-        // For debugging, you can print the values to the console.
+        // For debugging, you can print values to the console.
         // To see this, uncomment the line below, redeploy, and watch the terminal.
-        System.out.println("A: " + numberA + " + B: " + numberB + " = " + sum);
+        // System.out.println("A: " + numberA + " + B: " + numberB + " = " + sum);
     }
     
     // ===============================================================
-    //          (The code below is the level's framework)
+    // ===============================================================
+    //
+    //          ===>  DO NOT EDIT THE CODE BELOW THIS LINE  <===
+    //          (This is the framework that makes the level work)
+    //
+    // ===============================================================
     // ===============================================================
 
-    // The constructor now accepts a String name instead of a ShuffleboardTab.
     public Level3(String name) {
         super(name);
 
-        // Get the NetworkTableEntry for each piece of data we want to display.
-        // The name (e.g., "Level 3") is used to create a unique key.
-        // In Elastic, these will appear grouped under "/SmartDashboard/Level 3/".
+        // This code sets up our live "phone lines" to the dashboard widgets.
+        // It tells the program: "I will need to talk to widgets named 'Number A',
+        // 'Number B', and 'Sum' inside the 'Level 3' group."
         numberAEntry = SmartDashboard.getEntry(name + "/Number A");
         numberBEntry = SmartDashboard.getEntry(name + "/Number B");
         sumEntry     = SmartDashboard.getEntry(name + "/Sum");
         
-        // Ensure the dashboard starts with clean values.
+        // This ensures the dashboard starts with clean, predictable values.
         reset();
     }
 
     @Override
     public Mode getMode() { 
-        // PERIODIC mode makes the run() method execute in a continuous loop.
+        // PERIODIC mode tells the framework to run the `run()` method
+        // in a continuous loop, over and over, until the robot is disabled.
         return Mode.PERIODIC; 
     }
     
     @Override
     public void reset() {
-        // When the level is reset, set all dashboard numbers back to 0.
+        // When the level is reset, this sets all dashboard numbers back to 0.
         numberAEntry.setDouble(0.0);
         numberBEntry.setDouble(0.0);
         sumEntry.setDouble(0.0);
@@ -112,15 +149,14 @@ public class Level3 extends LevelBase {
     
     @Override
     public boolean checkSuccess() {
-        // This method automatically checks if your calculation is correct.
-        // It reads the inputs and compares them to the displayed sum.
+        // This method is also running in the background. It automatically
+        // checks if your calculation is correct.
         double a = numberAEntry.getDouble(0.0);
         double b = numberBEntry.getDouble(0.0);
         double displayedSum = sumEntry.getDouble(0.0);
         
-        // Because computers can have tiny errors with decimal numbers (doubles),
-        // we check if the difference is a very, very small number instead of checking
-        // for exact equality.
+        // Because computers can have tiny precision errors with decimal numbers,
+        // we check if the result is "close enough" rather than perfectly equal.
         return Math.abs(displayedSum - (a + b)) < 0.0001;
     }
 }

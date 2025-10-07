@@ -4,44 +4,61 @@ package frc.robot.Levels;
 import frc.robot.LevelBase;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 /**
- * LEVEL 2: UNDERSTANDING DATA TYPES
+ * =================================================================================================
+ * LEVEL 2: STORING INFORMATION (VARIABLES & DATA TYPES)
+ * =================================================================================================
  *
- * This level teaches you about Java's basic data types, which are the
- * fundamental building blocks of programming.
+ * In this level, you'll learn how to store information in your code using "variables."
  *
- * You will learn how to:
- * - Declare variables for the four most common data types.
- * - Assign values to those variables.
- * - Display all four types on Elastic.
+ * Think of variables like labeled storage boxes. Each box is designed to hold a specific
+ * "type" of information. You can't put liquid in a cardboard box, and in programming, you
+ * can't put text into a number variable. Choosing the right "data type" is essential.
  *
- * DATA TYPES ARE THE "NOUNS" OF PROGRAMMING.
- * They represent all the information your robot will ever use, from sensor
- * readings to motor speeds to game objectives.
+ * ---
  *
- * How to Complete This Level:
- * 1. Go to the run() method below. You will see several "// TODO" comments.
- * (look how VScode makes it blue)
- * 2. Follow the instructions to declare and assign a value to each variable.
- * 3. Uncomment the four 'levelTab.add(...)' lines to display your variables.
- * 4. Uncomment the final line: 'completed = true;'
- * 5. Build and Deploy/Simulate your code, just like in Level 1.
- * 6. On Elastic Level Select, select the "Level 2" tab.
- * 7. In the FRC Driver Station, click "Enable Robot".
- * 8. Check the "Level 2" tab. If you see all four of your values displayed
- * correctly, the Status will change to "PASSED" → YOU WIN!
+ * WHAT YOU WILL LEARN IN THIS LEVEL:
+ *  - What a "variable" is in programming.
+ *  - How to create variables for the 4 most common data types.
+ *  - How to send all four types of data to the dashboard to be displayed.
  *
- * Important Notes:
- * - String: Used for text, must be in "double quotes".
- * - int: Used for whole numbers (integers).
- * - double: Used for numbers with decimals.
- * - boolean: Can only be 'true' or 'false'.
- * - The 'levelTab.add()' command is smart and handles all these types
- * automatically.
+ * ---
  *
- * Success Condition: All four variables are declared and their values appear
- * correctly on the "Level 2" tab.
+ * YOUR GOAL:
+ *  - Activate the pre-written code to create four different variables.
+ *  - Display the value of each variable on the Elastic dashboard.
+ *
+ * =================================================================================================
+ *
+ * HOW TO COMPLETE THIS LEVEL:
+ *
+ * Your task is simple: "uncomment" the code that is already written for you.
+ *
+ * What is "Uncommenting"?
+ * In Java, any line starting with `//` is a "comment." The computer completely ignores it.
+ * Comments are for humans to read. The code for this level is currently commented out.
+ *
+ * To "uncomment" a line, just delete the `//` from the beginning. The line will
+ * change color, showing that it is now "active" code that the computer will run.
+ *
+ * === STEP-BY-STEP INSTRUCTIONS ===
+ *
+ *   1. Scroll down to the `run()` method.
+ *   2. You will see several lines of code starting with `//`.
+ *   3. **Delete the `//`** from the beginning of the four lines that create variables (`String`, `int`, `double`, `boolean`).
+ *   4. **Delete the `//`** from the beginning of the four lines that start with `SmartDashboard...`
+ *   5. **Delete the `//`** from the final line: `completed = true;`
+ *
+ *   6. Build and Simulate your code (just like in Level 1).
+ *        ➤ `Ctrl+Shift+P` → "WPILib: Build Robot Code"
+ *        ➤ `Ctrl+Shift+P` → "WPILib: Simulate Robot Code"
+ *
+ *   7. In Elastic, use the "Level Select" widget to choose "Level 2".
+ *   8. In the FRC Driver Station, click "Enable".
+ *   9. Go back to Elastic. You should see a new "Level 2" widget showing all four of your
+ *      values. If they appear correctly, the status will change to "PASSED". YOU WIN!
+ *
+ * =================================================================================================
  */
 public class Level2 extends LevelBase {
     private boolean completed = false;
@@ -49,7 +66,7 @@ public class Level2 extends LevelBase {
     // ===============================================================
     // ===============================================================
     //
-    // ===> WRITE YOUR CODE IN THE run() METHOD <===
+    //          ===>  WRITE YOUR CODE IN THE run() METHOD  <===
     //
     // ===============================================================
     // ===============================================================
@@ -59,36 +76,41 @@ public class Level2 extends LevelBase {
         System.out.println("Level 2: Working with data types");
 
         // TODO 1: Create a String variable to hold a message.
-        // A String is used for any text data.
+        // A String holds text. Perfect for names, messages, or labels.
+        // It must always be surrounded by double quotes "".
         //String teamName = "Titan Robotics";
         
         // TODO 2: Create an int variable to hold a whole number.
-        // An int is used for numbers without decimal points, like a team number.
+        // An 'int' (short for integer) holds whole numbers.
+        // Great for counting things, like game pieces scored or your team number.
         //int teamNumber = 8334;
         
         // TODO 3: Create a double variable to hold a decimal number.
-        // A double is used for precise measurements, like from a sensor.
+        // A 'double' holds numbers with decimals. Use this for precise measurements,
+        // like distance from a sensor (e.g., 10.5 inches) or motor power (e.g., 0.75).
         //double sensorValue = 3.14159;
         
         // TODO 4: Create a boolean variable to hold a true/false state.
-        // A boolean is like a light switch: it can only be on (true) or off (false).
+        // A 'boolean' is the simplest type. It can only be `true` or `false`.
+        // It's like a digital light switch, perfect for checking if a sensor is
+        // triggered or if a task is finished.
         //boolean robotReady = true;
 
-        // TODO 5: UNCOMMENT the four lines below to display your variables.
+        // TODO 5: UNCOMMENT the four lines below to display your variables on the dashboard.
         // SmartDashboard.putString( levelName +"/Team Name", teamName);
         // SmartDashboard.putNumber( levelName +"/Team Number", teamNumber);
         // SmartDashboard.putNumber( levelName +"/Sensor Reading", sensorValue);
         // SmartDashboard.putBoolean(levelName +"/Robot Ready", robotReady);
 
-        // Uncomment this line when you've completed the tasks
+        // Finally, uncomment this line to tell the program you're done!
         //completed = true;
     }
 
     // ===============================================================
     // ===============================================================
     //
-    // ===> DO NOT EDIT THE CODE BELOW THIS LINE <===
-    // (This is the framework that makes the level work)
+    //          ===>  DO NOT EDIT THE CODE BELOW THIS LINE  <===
+    //          (This is the framework that makes the level work)
     //
     // ===============================================================
     // ===============================================================
