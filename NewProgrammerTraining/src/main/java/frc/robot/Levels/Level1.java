@@ -21,20 +21,20 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * Master this cycle, and you’re ready for anything!
  *
  * How to Complete This Level:
- *   1. Open Shuffleboard 2025 on your laptop.
+ *   1. Open Elastic on your laptop.
  *   2. Open FRC Driver Station on your laptop and say yes to the pop up question.
  *   2. In VS Code:
  *        ➤ Press Ctrl+Shift+P → Type/Select "WPILib: Build Robot Code"
  *        ➤ Wait for "BUILD SUCCESSFUL"
  *   3. In VS Code:
  *        ➤ Press Ctrl+Shift+P → Type "WPILib: Simulate Robot Code"
- *        ➤ Click the check box for  "Use real DriverStation".
+ *        ➤ Click the check box for  "Use real DriverStation" at top of the screen click ok.
  *        ➤ Wait for "RUNNING IN SIMULATOR"
- *   4. Go back to Shuffleboard → you should see 3 tabs | SmartDashboard | LiveWindow | Level 1 |
+ *   4. Go back to Elastic → you should see 3 tabs | SmartDashboard | LiveWindow | Level 1 |
  *        ➤ In the SmartDashboard tab you should see "/SmartDashboard/Level Select" field →  You should see "Level 1 Deploy." 
  *        ➤ In the Level 1 tab Look for the "Greeting" field →  You should see "Waiting..." 
  *        ➤ Feel free to resize the UI Boxes
- *   5. Go to FRC Driver Station → Click "Enable Robot"
+ *   5. Go to FRC Driver Station → (Shout Enabling Robot!!) Click "Enable Robot"
  *   6. Go back to Shuffleboard → Look for the "Greeting" field.
  *        ➤ If you see "Hello, FRC!" → Status changes to "PASSED" → YOU WIN!
  *

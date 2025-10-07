@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * You will learn how to:
  * - Declare variables for the four most common data types.
  * - Assign values to those variables.
- * - Display all four types on Shuffleboard.
+ * - Display all four types on Elastic.
  *
  * DATA TYPES ARE THE "NOUNS" OF PROGRAMMING.
  * They represent all the information your robot will ever use, from sensor
@@ -27,7 +27,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * 3. Uncomment the four 'levelTab.add(...)' lines to display your variables.
  * 4. Uncomment the final line: 'completed = true;'
  * 5. Build and Deploy/Simulate your code, just like in Level 1.
- * 6. On Shuffleboard Level Select, select the "Level 2" tab.
+ * 6. On Elastic Level Select, select the "Level 2" tab.
  * 7. In the FRC Driver Station, click "Enable Robot".
  * 8. Check the "Level 2" tab. If you see all four of your values displayed
  * correctly, the Status will change to "PASSED" → YOU WIN!
@@ -60,28 +60,28 @@ public class Level2 extends LevelBase {
 
         // TODO 1: Create a String variable to hold a message.
         // A String is used for any text data.
-        String teamName = "Titan Robotics";
-
+        //String teamName = "Titan Robotics";
+        
         // TODO 2: Create an int variable to hold a whole number.
         // An int is used for numbers without decimal points, like a team number.
-        int teamNumber = 8334;
-
+        //int teamNumber = 8334;
+        
         // TODO 3: Create a double variable to hold a decimal number.
         // A double is used for precise measurements, like from a sensor.
-         double sensorValue = 3.14159;
-
+        //double sensorValue = 3.14159;
+        
         // TODO 4: Create a boolean variable to hold a true/false state.
         // A boolean is like a light switch: it can only be on (true) or off (false).
-       boolean robotReady = true;
+        //boolean robotReady = true;
 
         // TODO 5: UNCOMMENT the four lines below to display your variables.
-        SmartDashboard.putString(levelName +"/Team Name", teamName);
-        SmartDashboard.putNumber(levelName +"/Team Number", teamNumber);
-        SmartDashboard.putNumber(levelName +"/Sensor Reading", sensorValue);
-        SmartDashboard.putBoolean(levelName +"/Robot Ready", robotReady);
+        // SmartDashboard.putString( levelName +"/Team Name", teamName);
+        // SmartDashboard.putNumber( levelName +"/Team Number", teamNumber);
+        // SmartDashboard.putNumber( levelName +"/Sensor Reading", sensorValue);
+        // SmartDashboard.putBoolean(levelName +"/Robot Ready", robotReady);
 
         // Uncomment this line when you've completed the tasks
-        completed = true;
+        //completed = true;
     }
 
     // ===============================================================

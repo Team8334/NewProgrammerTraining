@@ -1,6 +1,9 @@
 // Level4.java
 package frc.robot.Levels;
 import frc.robot.LevelBase;
+
+import static edu.wpi.first.units.Units.Value;
+
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -48,9 +51,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Level4 extends LevelBase {
 
-    private final NetworkTableEntry motorSpeedEntry;
-    private final NetworkTableEntry statusEntry;
-    private final NetworkTableEntry canMoveEntry;
+    private NetworkTableEntry motorSpeedEntry;
+    private NetworkTableEntry statusEntry;
+    private NetworkTableEntry canMoveEntry;
 
     // ===============================================================
     // ===============================================================
@@ -63,18 +66,19 @@ public class Level4 extends LevelBase {
     @Override
     public void run() {
         // TODO: Read the motor speed from the dashboard
+        motorSpeedEntry = SmartDashboard.getEntry(levelName + "/Motor Speed");
+        statusEntry = SmartDashboard.getEntry(levelName + "/Status");
+        canMoveEntry = SmartDashboard.getEntry(levelName + "/Can Move");
         double motorSpeed = motorSpeedEntry.getDouble(0.0);
 
         // TODO: Check if the speed is safe (between -1.0 and 1.0, inclusive)
         // HINT: A speed is safe if it's >= -1.0 AND <= 1.0
         // Use an if/else statement:
-        if (motorSpeed >= -1.0 && motorSpeed <= 1.0) {
-            // Speed is SAFE
+        if (motorSpeed <= 1.0 && motorSpeed >= -1.0) {
             statusEntry.setString("SAFE");
             canMoveEntry.setBoolean(true);
-        } else {
-            // Speed is DANGEROUS
-            statusEntry.setString("DANGER");
+        } else { 
+            statusEntry.setString("Danger");
             canMoveEntry.setBoolean(false);
         }
 
@@ -85,7 +89,7 @@ public class Level4 extends LevelBase {
     
     // ===============================================================
     // ===============================================================
-    //
+    // 
     //          ===>  DO NOT EDIT THE CODE BELOW THIS LINE  <===
     //          (This is the framework that makes the level work)
     //
@@ -94,12 +98,9 @@ public class Level4 extends LevelBase {
 
     public Level4(String name) {
         super(name);
-        // Get the NetworkTableEntry for each piece of data.
-        // The level name (e.g., "Level 4") is used as a prefix to group them.
-        motorSpeedEntry = SmartDashboard.getEntry(name + "/Motor Speed");
-        statusEntry = SmartDashboard.getEntry(name + "/Status");
-        canMoveEntry = SmartDashboard.getEntry(name + "/Can Move");
-        reset();
+        levelName = name;
+        SmartDashboard.putNumber(levelName + "/Motor Speed", 0.0);
+
     }
 
     @Override
@@ -107,10 +108,7 @@ public class Level4 extends LevelBase {
 
     @Override
     public void reset() {
-        motorSpeedEntry.setDouble(0.0);
-        statusEntry.setString("UNKNOWN");
-        canMoveEntry.setBoolean(false);
-        SmartDashboard.putNumber(levelName + "/Current Speed", 0.0);
+
     }
 
     @Override

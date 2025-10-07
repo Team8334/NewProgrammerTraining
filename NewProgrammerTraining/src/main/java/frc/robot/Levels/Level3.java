@@ -66,6 +66,7 @@ public class Level3 extends LevelBase {
         // TODO 3: Calculate the sum of numberA and numberB and store it in a new variable.
         // I dont think you need help on this one
         double sum = numberA + numberB;
+
         
         // TODO 4: Display the calculated sum in the "Sum" widget.
         sumEntry.setDouble(sum);
@@ -73,7 +74,7 @@ public class Level3 extends LevelBase {
 
         // For debugging, you can print the values to the console.
         // To see this, uncomment the line below, redeploy, and watch the terminal.
-        //System.out.println("A: " + numberA + " + B: " + numberB + " = " + sum);
+        System.out.println("A: " + numberA + " + B: " + numberB + " = " + sum);
     }
     
     // ===============================================================
