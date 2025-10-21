@@ -51,6 +51,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Level4 extends LevelBase {
 
+
+    // in this level i have already created network table entries for you, so i can test your code
     private NetworkTableEntry motorSpeedEntry;
     private NetworkTableEntry statusEntry;
     private NetworkTableEntry canMoveEntry;
@@ -69,22 +71,21 @@ public class Level4 extends LevelBase {
         motorSpeedEntry = SmartDashboard.getEntry(levelName + "/Motor Speed");
         statusEntry = SmartDashboard.getEntry(levelName + "/Status");
         canMoveEntry = SmartDashboard.getEntry(levelName + "/Can Move");
-        double motorSpeed = motorSpeedEntry.getDouble(0.0);
+        // double motorSpeed = motorSpeedEntry.getDouble(0.0);
 
         // TODO: Check if the speed is safe (between -1.0 and 1.0, inclusive)
         // HINT: A speed is safe if it's >= -1.0 AND <= 1.0
         // Use an if/else statement:
-        if (motorSpeed <= 1.0 && motorSpeed >= -1.0) {
-            statusEntry.setString("SAFE");
-            canMoveEntry.setBoolean(true);
-        } else { 
-            statusEntry.setString("Danger");
-            canMoveEntry.setBoolean(false);
-        }
+        
+            // statusEntry.setString("SAFE");
+            // canMoveEntry.setBoolean(true);
+
+            // statusEntry.setString("Danger");
+            // canMoveEntry.setBoolean(false);
 
         // Display the current speed for debugging (optional). 
         // We already read it, but this shows how you could display a processed value.
-        SmartDashboard.putNumber(levelName + "/Current Speed", motorSpeed);
+        // SmartDashboard.putNumber(levelName + "/Current Speed", motorSpeed);
     }
     
     // ===============================================================
