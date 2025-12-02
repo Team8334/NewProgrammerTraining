@@ -90,23 +90,23 @@ public class Level3 extends LevelBase {
         // TODO 1: Read the current value from the "Number A" widget.
         // We use our special "network table" variable and ask it to `.getDouble()`.
         // The `0.0` is a default value to use if it can't connect to the dashboard.
-        // double numberA = numberAEntry.getDouble(0.0);
+         double numberA = numberAEntry.getDouble(0.0);
         
         // TODO 2: Do the same for the "Number B" widget. Read its value.
-        // double numberB = numberBEntry.getDouble(0.0);
+        double numberB = numberBEntry.getDouble(0.0);
         
         // TODO 3: Calculate the sum of numberA and numberB.
         // Store the result in a new `double` variable called `sum`. 
-        // double sum = 0; (change this line)
+         double sum = numberA+numberB;
         
         // TODO 4: Send your calculated `sum` back to the "Sum" widget on the dashboard.
         // This uses the "phone line" for the sum widget to `.setDouble()` its value.
-        // sumEntry.setDouble(sum);
+         sumEntry.setDouble(sum);
 
 
         // For debugging, you can print values to the console.
         // To see this, uncomment the line below, redeploy, and watch the terminal.
-        // System.out.println("A: " + numberA + " + B: " + numberB + " = " + sum);
+         System.out.println("A: " + numberA + " + B: " + numberB + " = " + sum);
     }
     
     // ===============================================================

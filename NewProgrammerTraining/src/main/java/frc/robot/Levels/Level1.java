@@ -71,6 +71,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *             - "Level Select"
  *             - "Current level"
  *             - "Reset Level"
+ 
  *        ➤ In the "Level Select" widget you just added, you should see "Level 1 Deploy."
  *
  *   6. Go to the FRC Driver Station window.
@@ -85,7 +86,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  *   8. Look at the "Level 1" widget you just added.
  *        ➤ Find the "Greeting" field.
- *        ➤ If it says "Hello, FRC!" and the "Current level" widget says "PASSED" ... YOU DID IT!
+ *        ➤ If it says "Hello, FRC!" and the "level status" widget says "PASSED" ... YOU DID IT!
  *
  * ---
  *

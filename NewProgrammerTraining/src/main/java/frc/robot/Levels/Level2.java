@@ -75,35 +75,35 @@ public class Level2 extends LevelBase {
     public void run() {
         System.out.println("Level 2: Working with data types");
 
-        // TODO 1: Create a String variable to hold a message.
-        // A String holds text. Perfect for names, messages, or labels.
-        // It must always be surrounded by double quotes "".
-        //String teamName = "Titan Robotics";
+         //TODO 1: Create a String variable to hold a message.
+        //A String holds text. Perfect for names, messages, or labels.
+         //It must always be surrounded by double quotes "".
+        String teamName = "Titan Robotics";
         
         // TODO 2: Create an int variable to hold a whole number.
         // An 'int' (short for integer) holds whole numbers.
         // Great for counting things, like game pieces scored or your team number.
-        //int teamNumber = 8334;
+        int teamNumber = 8334;
         
         // TODO 3: Create a double variable to hold a decimal number.
         // A 'double' holds numbers with decimals. Use this for precise measurements,
         // like distance from a sensor (e.g., 10.5 inches) or motor power (e.g., 0.75).
-        //double sensorValue = 3.14159;
+        double sensorValue = 3.14159;
         
         // TODO 4: Create a boolean variable to hold a true/false state.
         // A 'boolean' is the simplest type. It can only be `true` or `false`.
         // It's like a digital light switch, perfect for checking if a sensor is
         // triggered or if a task is finished.
-        //boolean robotReady = true;
+        boolean robotReady = true;
 
         // TODO 5: UNCOMMENT the four lines below to display your variables on the dashboard.
-        // SmartDashboard.putString( levelName +"/Team Name", teamName);
-        // SmartDashboard.putNumber( levelName +"/Team Number", teamNumber);
-        // SmartDashboard.putNumber( levelName +"/Sensor Reading", sensorValue);
-        // SmartDashboard.putBoolean(levelName +"/Robot Ready", robotReady);
+         SmartDashboard.putString( levelName +"/Team Name", teamName);
+        SmartDashboard.putNumber( levelName +"/Team Number", teamNumber);
+         SmartDashboard.putNumber( levelName +"/Sensor Reading", sensorValue);
+         SmartDashboard.putBoolean(levelName +"/Robot Ready", robotReady);
 
         // Finally, uncomment this line to tell the program you're done!
-        //completed = true;
+        completed = true;
     }
 
     // ===============================================================
